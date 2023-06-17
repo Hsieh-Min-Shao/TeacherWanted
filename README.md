@@ -15,9 +15,9 @@
     (2) 應徵許願、發送站內信  
 
 ### API 文件
-1. [後台使用者管理UserManagement](https://github.com/yifang0000/TeacherWanted/blob/main/UserManagement.md)by[yifang0000](https://github.com/yifang0000)  
-2. [後台優惠券管理CouponManagement](https://github.com/yifang0000/TeacherWanted/blob/main/CouponManagement.md)by[yifang0000](https://github.com/yifang0000)  
-3. [前後台公告管理AnnouncementManagement](https://github.com/yifang0000/TeacherWanted/blob/main/AnnouncementManagement.md)) by[yifang0000](https://github.com/yifang0000)  
+1. [後台使用者管理UserManagement](https://github.com/yifang0000/TeacherWanted/blob/main/UserManagement.md) by [yifang0000](https://github.com/yifang0000)  
+2. [後台優惠券管理CouponManagement](https://github.com/yifang0000/TeacherWanted/blob/main/CouponManagement.md) by [yifang0000](https://github.com/yifang0000)  
+3. [前後台公告管理AnnouncementManagement](https://github.com/yifang0000/TeacherWanted/blob/main/AnnouncementManagement.md)) by [yifang0000](https://github.com/yifang0000)  
 
 
 
