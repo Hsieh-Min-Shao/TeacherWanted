@@ -13,7 +13,6 @@ public interface UserRepo extends JpaRepository<User, Integer> { //繼承了JPA�
     public boolean existsByMemAccount(String memAccount);//註冊時檢查帳號是否重複
     public boolean existsByMemEmail(String memEmail);//註冊時檢查信箱是否重複
     public User findByMemEmail(String memEmail);//檢查忘記密碼填入的信箱是否存在
-    public User findByResetPasswordToken(String token);
-
+    public User findByResetPasswordToken(String token);//搜尋重設密碼的token
 
 }

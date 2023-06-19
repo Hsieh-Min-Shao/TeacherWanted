@@ -67,12 +67,12 @@
 
       #username,
       #password {
-        display: block;
+        /*display: block;*/
         height: 50px;
-        width: 100%;
+
         background-color: rgba(255, 255, 255, 0.363);
         border-radius: 3px;
-        padding: 0 10px;
+
         margin-top: 8px;
         font-size: 20px;
         font-weight: 300;
@@ -270,11 +270,20 @@
         <h3>歡迎登入</h3>
         <br />
         <div>
-          <input type="text" placeholder="請輸入帳號" th:field="*{memAccount}" id="username" name="username" />
+          <input type="text" placeholder="請輸入帳號" th:field="*{memAccount}" style="width: 85%" id="username" name="username" />
           <br />
-          <input type="password" placeholder="請輸入密碼"  th:field="*{memPassword}"  id="password"  name="password" />
+          <br />
+
+          <input type="password" placeholder="請輸入密碼"  th:field="*{memPassword}" style="width: 85%" id="password"  name="password" />
+          <span id="togglePassword" style="margin-bottom: 10px"><img src="../img/base/eye-close.svg" width="30px"  alt="顯示密碼"></span>
+
+          <br />
           <br />
         </div>
+<!--      <input type="checkbox" id="rememberMe" name="rememberMe" th:checked="${rememberMe}">-->
+<!--      <label for="rememberMe">記住我</label>-->
+<!--      <br />-->
+<!--      <br />-->
         <!-- auth code start -->
               <div class="input_block">
                 <input id="validText" type="text" placeholder="請輸入驗證碼" />
@@ -477,7 +486,22 @@
           }
         });
       });
+      $(document).ready(function() {
+        $("#togglePassword").click(function() {
+          var passwordInput = $("#password");
+          var toggleIcon = $(this).find("img");
 
+          if (passwordInput.attr("type") === "password") {
+            passwordInput.attr("type", "text");
+            toggleIcon.attr("src", "../img/base/eye-close.svg");
+            toggleIcon.attr("alt", "隱藏密碼");
+          } else {
+            passwordInput.attr("type", "password");
+            toggleIcon.attr("src", "../img/base/eye-open.svg");
+            toggleIcon.attr("alt", "顯示密碼");
+          }
+        });
+      });
 
 
     </script>

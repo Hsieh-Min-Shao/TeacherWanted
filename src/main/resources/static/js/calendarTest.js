@@ -240,3 +240,14 @@ function inputFormattedDate(dateString) {
   return formattedDate;
 }
 // 轉換時間格式 結束
+
+//===========點擊活動新增之後===========//
+$(document).ready(function() {
+  $("#submitCalender").click(function() {
+        // 顯示活動新增成功
+    alert("活動新增成功！");
+
+    // 刷新頁面
+    location.reload();
+  });
+});

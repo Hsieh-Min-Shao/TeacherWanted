@@ -7,25 +7,25 @@
 
 //==========option 切換頁面===========//
 $(document).ready(function () {
-  console.log("test : ", 12345789);
+  // console.log("test : ", 12345789);
   $("#navSearch1").change(function () {
     let switchValue = $("#navSearch1").find(":selected").val();
-    console.log("switchValue:", switchValue);
+    // console.log("switchValue:", switchValue)
     switch (switchValue) {
       case "MemberCenter":
-        location.href = "/member/MemberCenter.html";
+        window.location.href = "/member/MemberCenter.html";
         break;
       case "MemberDetail":
-        location.href = "/member/MemberDetail.html";
+        window.location.href = "/member/MemberDetail.html";
         break;
       case "MySubscribe":
-        location.href = "/member/MySubscribe.html";
+        window.location.href = "/member/MySubscribe.html";
         break;
       case "orderList":
-        location.href = "/member/orderList.html";
+        window.location.href = "/member/orderList.html";
         break;
       case "inboxmail":
-        location.href = "/member/inboxmail.html";
+        window.location.href = "/member/inboxmail.html";
         break;
       default:
         return;
@@ -385,53 +385,54 @@ $(document).ready(function () {
 // // })
 
 // // }
+// //===========Vue 左側部分 =============//
+const app = Vue.createApp({
+  data() {
+    return {
+      url:"/memberDetail",
+      memName: "",
+      memPhoto: "",
+      member:[],
 
-// const app = Vue.createApp({
-//   data() {
-//     return {
-//       url:"/member/MySubscribe.html",
-//       memName: "",
-//       memPhoto: "",
-//       member:[],
+    };
+  },
+  mounted() {
+    // 呼叫預先執行的函式
+    // const url= "http://localhost:8080/memberInfo";
+    // const urlParams = new URLSearchParams(window.location.search);
+    // const memId = urlParams.get("memId");
+    // console.log(this.memId);
+    this.getMemberDetail();                            //
+  },
+  methods: {
+    getMemberDetail() {
+      console.log("getMemberDetail")
+      axios.post(this.url,{                            //promise 等後端回應
 
-//     };
-//   },
-//   mounted() {
-//     // 呼叫預先執行的函式
-//     // const url= "http://localhost:8080/memberInfo";
-//     // const urlParams = new URLSearchParams(window.location.search);
-//     // const memId = urlParams.get("memId");
-//     // console.log(this.memId);
-//     this.getMemberDetail();                            //
-//   },
-//   methods: {
-//     getMemberDetail() {
-//       axios.post(this.url,{                            //promise 等後端回應
+        memName: this.memName,
+        memPhoto: this.memPhoto,
 
-//         memName: this.memName,
-//         memPhoto: this.memPhoto,
+    })
+      .then((response) => {
+        console.log(response.data)                         // 後端回傳的資訊
+        // response = {memId: 10}
+        this.member = response.data,
+        console.log(this.member),
 
-//     })
-//       .then((response) => {
-//         console.log(response.data)                         // 後端回傳的資訊
-//         // response = {memId: 10}
-//         this.member = response.data,
-//         console.log(this.member),
+        this.memName = response.data.memName,
 
-//         this.memName = response.data.memName,
+        this.memPhoto = response.data.memPhoto
 
-//         this.memPhoto = response.data.memPhoto
+      })
+      .catch((error) => console.log(error))
+    },
 
-//       })
-//       .catch((error) => console.log(error))
-//     },
+  },
+});
 
-//   },
-// });
-
-// window.addEventListener("load", () => {
-// app.mount("#app");
-// });
+window.addEventListener("load", () => {
+app.mount("#app");
+});
 
 $(function () {
   var test = JSON.parse(sessionStorage.getItem("memberStorage"));
@@ -444,3 +445,5 @@ $(function () {
   }
   $("img#eximg").attr("src", imageSrc);
 });
+
+

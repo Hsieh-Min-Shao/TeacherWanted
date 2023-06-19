@@ -99,6 +99,7 @@ public class UserForgotPw {
     @PostMapping("/reset_password")
     public String processResetPassword(HttpServletRequest request, Model model,@ModelAttribute("user") User viewUser) {
         String token = request.getParameter("token");
+
         User user = userService.get(token);
         if (user == null) {
             model.addAttribute("title", "重設密碼");

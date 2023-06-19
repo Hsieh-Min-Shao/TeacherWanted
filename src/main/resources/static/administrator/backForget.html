@@ -161,7 +161,7 @@
       function sendmail(adminPassword) {
         var mailbody = {
           recipient: $("#adminEmail").val(),
-          msgBody: `老師您好，您的密碼已重設：\n密碼：${adminPassword}\n建議登入後重新更改密碼\n後台登入頁面請往：http://localhost:8080/administrator/backlogin.html`,
+          msgBody: `您好，您的密碼已重設：\n密碼：${adminPassword}\n建議登入後重新更改密碼\n後台登入頁面請往：http://localhost:8080/administrator/backlogin.html`,
           subject: "懸賞啼雀｜您的密碼已重設",
         };
         console.log(mailbody);

@@ -19,19 +19,15 @@ public class WishController {
     @Autowired
     private WishService service;
 
-    public WishController(WishService wishService) {
-        this.service = wishService;
-    }
-
     @GetMapping("/wish")
-    public String showWishList(Model model) {
-        List<Wish> listWish = service.listAll();
-        model.addAttribute("listWish", listWish);
+    public String showWishList(Model model) {  //showWishList 方法接受一個 Model 物件作為參數，用於傳遞資料到視圖。
+        List<Wish> listWish = service.listAll(); //呼叫 service 物件的 listAll 方法，獲取所有的願望清單，並將結果賦值給 listWish 變數
+        model.addAttribute("listWish", listWish);//將 listWish 變數添加到 model 物件中，以便在視圖中可以使用該資料。
         return "wish";
     }
 
     @GetMapping("/wish/new")
-    public String showNewForm(Model model,HttpSession session,RedirectAttributes ra) {
+    public String showNewForm(Model model, HttpSession session, RedirectAttributes ra) {
         User currentUser = (User) session.getAttribute("userInfo");
         if (currentUser != null) {
             model.addAttribute("wish", new Wish());
@@ -45,10 +41,9 @@ public class WishController {
     }
 
     @PostMapping("/wish/save")
-    public String saveWish(@ModelAttribute("wish") Wish wish, HttpSession session, Model model,RedirectAttributes ra) {
+    public String saveWish(@ModelAttribute("wish") Wish wish, HttpSession session, Model model, RedirectAttributes ra) {
         String xx = (String) session.getAttribute("memAccount");
         wish.setMemAccount(xx);
-        System.out.println("memAccount: " + wish.getMemAccount());
 
         service.save(wish);
         ra.addFlashAttribute("message", "許願成功＼(＾▽＾)／");
@@ -58,42 +53,30 @@ public class WishController {
     @GetMapping("/wish/edit/{wishId}")
     public String showEditForm(@PathVariable("wishId") Integer wishId, HttpSession session, Model model, RedirectAttributes ra) {
         try {
-            String loggedInAccount = (String) session.getAttribute("memAccount");
             Wish wish = service.get(wishId);
 
-            // 檢查登錄的帳戶和許願文章的帳戶是否一致
-            if (loggedInAccount != null && loggedInAccount.equals(wish.getMemAccount())) {
                 model.addAttribute("wish", wish);
                 model.addAttribute("pageTitle", "編輯許願");
                 return "wish_form";
-            } else {
-                ra.addFlashAttribute("message", "您沒有權限編輯這則許願(×﹏×)");
-                return "redirect:/wish";
-            }
+
         } catch (WishNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
             return "redirect:/wish_my";
         }
     }
 
+
     @GetMapping("/wish/delete/{wishId}")
     public String deleteWish(@PathVariable("wishId") Integer wishId, RedirectAttributes ra, HttpSession session) {
         try {
             Wish wish = service.get(wishId);
-
-            // 檢查當前登入的帳號是否與該許願文章的 memAccount 相符
-            String memAccount = (String) session.getAttribute("memAccount");
-            if (!wish.getMemAccount().equals(memAccount)) {
-                ra.addFlashAttribute("message", "您沒有權限刪除這則許願(×﹏×)");
-                return "redirect:/wish";
-            }
 
             service.delete(wishId);
             ra.addFlashAttribute("message", "許願已刪除");
         } catch (WishNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
         }
-        return "redirect:/wish_my";
+        return "redirect:/wish";
     }
 
     @GetMapping("/mywish")

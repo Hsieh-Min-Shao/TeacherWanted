@@ -16,28 +16,21 @@ public class WishServiceImpl implements WishService {
     @Qualifier("wishRepository")
     private WishRepository repo;
 
-    public WishServiceImpl(WishRepository wishRepository) {
-        this.repo = wishRepository;
+
+    public List<Wish> listAll() { // 取得所有wish的方法
+        return (List<Wish>) repo.findAll(); //使用 repo.findAll() 從資料庫中查詢全部
     }
 
-    public List<Wish> listAll() {
-        return (List<Wish>) repo.findAll();
+    public void save(Wish wish) { // 儲存wish的方法
+        repo.save(wish); //使用 repo.save(wish) 將物件保存到資料庫
     }
 
-    public void save(Wish wish) {
-        repo.save(wish);
-    }
-
-    public List<Wish> listByMemberAccount(String memberAccount) {
+    public List<Wish> listByMemberAccount(String memberAccount) { // 根據會員帳號取得wish的方法
         return repo.findByMemAccount(memberAccount);
     }
 
-//    @Override
-//    public List<Wish> searchByKeyword(String keyword) {
-//        return repo.searchByKeyword(keyword);
-//    }
 
-    public Wish get(Integer wishId) throws WishNotFoundException {
+    public Wish get(Integer wishId) throws WishNotFoundException { // 根據ID取得wish的方法
         Optional<Wish> result = repo.findByWishId(wishId);
         if (result.isPresent()) {
             return result.get();
@@ -45,13 +38,18 @@ public class WishServiceImpl implements WishService {
         throw new WishNotFoundException("Could not find any wish with ID " + wishId);
     }
 
-    public void delete(Integer wishId) throws WishNotFoundException {
+    public void delete(Integer wishId) throws WishNotFoundException { // 刪除wish的方法
         Long count = repo.countBywishId(wishId);
         if (count == null || count == 0) {
             throw new WishNotFoundException("Could not find any wish with ID " + wishId);
         }
         repo.deleteById(wishId);
     }
+
+    //    @Override
+//    public List<Wish> searchByKeyword(String keyword) {
+//        return repo.searchByKeyword(keyword);
+//    }
 
 
 }

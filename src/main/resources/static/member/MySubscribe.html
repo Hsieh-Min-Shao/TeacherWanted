@@ -44,7 +44,6 @@
     <script src="../js/member/Moment.js"></script>
 
     <script src="../js/base.js"></script>
-    <!-- <script src="../js/member/MySubscribe.js"></script> -->
     <script src="../js/member/MySubscribe.js"></script>
  
 
@@ -175,7 +174,7 @@
       <section class="container" style="display: flex" id="app">
         <!-- 頁面左邊 -->
         <div class="aside" >
-          <div style="width: 100%" >
+          <div style="width: 100%"  >
             <div class="detailSearch" >
               <!--按鈕圖示-->
               <div
@@ -185,47 +184,45 @@
                 <div>
                   <form id="navSearch1" action="">
                     <select style="width: 125px; margin-left: 80px" name="formal">
-                      <option value="MemberCenter">我的課程</option>
                       <option value="MemberDetail">會員資料</option>
                       <option value="MySubscribe" selected>訂閱與收藏</option>
                       <option value="orderList">訂單管理</option>
-                      <option value="inboxmail">站內信</option>
                     </select>
                   </form>
                 </div>
               </div>
             </div>
-            <!--會員照片-->            
-              <div class="memInfo">
-                <div class="flexWrap flexAllCenter">
-                  <div class="profile_picture m-0">
-                    <div style="text-align: center" class="pb-2"
-                    alt="頭像設置">                        
-                    </div>
-                    <div>
-                      <img
-                        id="eximg"
-                        class="rounded-circle"
-                        src="../img/member/aside/logobgg.png"
-                        alt=""
-                      />
-                    </div>
-                    
-                  </div>
-                  <!-- 頭像結束 -->
-                  <div class="memName">
-                    <div id="file_camera">
-                      <i class="fa-solid fa-cloud-arrow-up"></i>
-                    </div>
-                    <span id="memNameHTML"></span>
-                  </div>
-                  
-                    
-                  
-                    <!--在此加入行事曆-->
+            <!--會員照片-->  
                     <div class="flexHorizontalCenter">
-                      <!--在此加入行事曆-->
-                      <div></div>
+                      <div class="memInfo">
+                        <div class="flexWrap flexAllCenter">
+                          <div class="profile_picture m-0">
+                            <div style="text-align: center" class="pb-2"
+                            alt="頭像設置">                        
+                            </div>
+                            <div>
+                              <img
+                                id="eximg"
+                                class="rounded-circle"
+                                src="../img/member/aside/logobgg.png"
+                                alt=""
+                              />
+                            </div>
+                            
+                          </div>
+                          <!-- 頭像結束 -->
+                          <div class="memName">
+                            <div id="file_camera">
+                              <i class="fa-solid fa-cloud-arrow-up"></i>
+                            </div>
+                            <span id="memNameHTML">會員姓名:胡迪警長</span>
+                          </div>
+                          
+                      
+
+
+
+
                     </div>
                   </div>
                 </div>               
@@ -239,7 +236,7 @@
               <!--會員中心-->
               <!-- 畫面區 -->
       
-      <!-- 我的訂閱那欄 -->
+      <!-- 我的訂閱那欄 -------------------------------------->
       <section id="pageLinkAll" style="background-color: #3c6a36;">
         <ul
           class="forHorizontalCenterFlex"
@@ -323,7 +320,7 @@
           </li>
         </ul>
       </section>
-      <!-- 我的訂閱那欄結束 -->
+      <!-- 我的訂閱那欄結束 ---------------------------------->
 
 
       <!-- 分頁1 我的訂閱 ------------------------------------>
@@ -365,7 +362,7 @@
                 <li>
                   <a href="http://localhost:8080//active/active.html?activityId=16">
                     <div class="img_block">
-                      <img src="/img/member/3.png" />
+                      <img src="/img/member/lesson3.jpg" />
                     </div>
                     <span class="item_text">山林徒步探險</span>
                   </a>
@@ -587,7 +584,13 @@
                 <br>
                 
                 <div class="flexHorizontalCenter">
-                    <a  id="submitCalender">新增活動</a>
+                    <!-- <a  id="submitCalender">新增活動</a> -->
+                    <button
+                    id="submitCalender"
+                    type="button"
+                    class=" btn btn-success">
+                    新增活動</button
+                  >
                   </div>  
              
             

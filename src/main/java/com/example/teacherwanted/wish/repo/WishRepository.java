@@ -13,7 +13,6 @@ import java.util.Optional;
 @Repository
 public interface WishRepository extends CrudRepository<Wish, Integer> {
 
-
     public Long countBywishId(Integer wishId);
 
     Optional<Wish> findByWishId(Integer wishId);
@@ -21,7 +20,6 @@ public interface WishRepository extends CrudRepository<Wish, Integer> {
     List<Wish> findByMemAccount(String memberAccount);
 
 //    List<Wish> searchByKeyword(String keyword);
-
 
 
 

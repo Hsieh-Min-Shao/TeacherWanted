@@ -17,7 +17,6 @@ public interface WishService {
 
     public List<Wish> listByMemberAccount(String memberAccount) ;
 
-
     public Wish get(Integer wishId) throws WishNotFoundException;
 
     public void delete(Integer wishId) throws WishNotFoundException ;

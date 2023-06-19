@@ -15,14 +15,14 @@ public class UserServiceImpl implements UserService{
     @Override
     public void registerUser(User user) {//繼承了介面所以實作方法
         repo.save(user);
-    } //實作註冊方法的內容:存在repo裡
+    } //實作註冊方法的內容:把註冊資料存在repo裡
 
     @Override
-    public boolean checkMemAccount(String memAccount) {
+    public boolean checkMemAccount(String memAccount) { //實作檢查帳號
         return repo.existsByMemAccount(memAccount);
     }
     @Override
-    public boolean checkMemEmail(String memEmail)
+    public boolean checkMemEmail(String memEmail) //實作檢查帳號
     {
         return repo.existsByMemEmail(memEmail);
     }

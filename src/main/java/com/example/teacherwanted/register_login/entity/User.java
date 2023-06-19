@@ -52,4 +52,12 @@ public class User {
     private Integer memStatus;
     @Column(name = "reset_password_token")
     private String resetPasswordToken;
+//    private boolean rememberMe;
+//    public boolean isRememberMe() {
+//        this.rememberMe = true;
+//        return rememberMe;
+//    }
+
+
+
 }

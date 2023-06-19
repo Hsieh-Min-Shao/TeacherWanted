@@ -31,7 +31,7 @@ function loginCheck() {
       sessionStorage.setItem("memberStorage", JSON.stringify(Data));
     },
     error: function () {
-      alert("沒登入");
+      alert("請先登入");
       window.location.href = "/login";
       return; // 錯誤發生時立即結束函式，不執行其他的JavaScript代碼
     },
