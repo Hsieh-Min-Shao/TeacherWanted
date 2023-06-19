@@ -28,7 +28,7 @@ public class ActiveServiceImpl implements ActiveService {
         }
 
         if (activityType == null || activityType.isEmpty()) {
-            activityType = null; // 或根據需要設置為默認值
+            activityType = null;
         }
         List<Active> activesReturn = activeDao.selectAllByKeyWorldAndType(key, activityType);
         Iterator<Active> iterator = activesReturn.iterator();
@@ -38,7 +38,6 @@ public class ActiveServiceImpl implements ActiveService {
             Active active = iterator.next();
             int comparison = (active.getActivityDueTime()).compareTo(timestamp);
             if (comparison < 0) {
-//                System.out.println("时间戳1早于时间戳2");
                 iterator.remove();
             }
 
@@ -59,7 +58,6 @@ public class ActiveServiceImpl implements ActiveService {
             Active active = iterator.next();
             int comparison = (active.getActivityDueTime()).compareTo(timestamp);
             if (comparison < 0) {
-//                System.out.println("时间戳1早于时间戳2");
                 iterator.remove();
             }
 
@@ -132,7 +130,7 @@ public class ActiveServiceImpl implements ActiveService {
         if (active.getActivityStatus().intValue() == 2) {
 //            報名時間在現在之後
             if (comparison > 0) {
-//                System.out.println("时间戳1早于时间戳2");
+
                 active.setActivityStatus(0);
             }
         }
@@ -182,7 +180,7 @@ public class ActiveServiceImpl implements ActiveService {
         }
 
         if (activityType == null || activityType.isEmpty()) {
-            activityType = null; // 或根據需要設置為默認值
+            activityType = null;
         }
 
 
@@ -199,7 +197,7 @@ public class ActiveServiceImpl implements ActiveService {
             System.out.println("2."+timestamp);
             int comparison = (active.getActivityDueTime()).compareTo(timestamp);
             if (comparison < 0) {
-//                System.out.println("时间戳1早于时间戳2");
+
                 active.setActivityStatus(2);
             }
 

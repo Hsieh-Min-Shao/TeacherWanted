@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface MemberService {
 
+
     //會員資料
     String update(Member member);
 

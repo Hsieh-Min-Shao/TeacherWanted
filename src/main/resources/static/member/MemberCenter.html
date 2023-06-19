@@ -19,7 +19,11 @@
     ></script>
     <!-- bootstrap相關 -->
 
-    <link href="/css/member/MemberCenter.css" rel="stylesheet" type="text/css" />
+    <link
+      href="/css/member/MemberCenter.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -27,12 +31,15 @@
       rel="stylesheet"
     />
 
-    
     <!--  CSS  -->
-    <link href="/css/member/MemberCenter.css" rel="stylesheet" type="text/css" />
+    <link
+      href="/css/member/MemberCenter.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- FontAwesome 連結 -->
-    
+
     <script
       src="https://kit.fontawesome.com/664595efd5.js"
       crossorigin="anonymous"
@@ -41,9 +48,6 @@
     <!-- <script src="../js/loginCheck.js"></script> -->
 
     <title>懸賞啼雀-會員中心</title>
-    
-  
-
   </head>
   <body class="TeacherWanted">
     <!-- 手機板導引列(粗糙) -->
@@ -54,7 +58,7 @@
         <a href="/courseteacher/CourseVue.html" class="">課程</a>
         <a href="/active/activeIndex.html" class="">活動</a>
         <a href="/wish" class="">許願池</a>
-        <a href="/bbsdiscuss/index.html" class="">論壇</a>
+        <a href="/bbsdiscuss/index.html?posttype=all" class="">論壇</a>
         <a href="/baseVer3/homepage.html" class="">商城</a>
       </div>
       <div class="navBar">
@@ -102,7 +106,11 @@
               >
               <a class="flexAllCenter" href="/active/activeIndex.html">活動</a>
               <a class="flexAllCenter" href="/wish">許願池</a>
-              <a class="flexAllCenter" href="/bbsdiscuss/index.html">論壇</a>
+              <a
+                class="flexAllCenter"
+                href="/bbsdiscuss/index.html?posttype=all"
+                >論壇</a
+              >
               <a class="flexAllCenter" href="/baseVer3/homepage.html">商城</a>
             </div>
             <div
@@ -159,11 +167,10 @@
         </ul>
       </div>
     </header>
-
     <main class="TeacherWanted">
       <!-- ！！！寫在這裡！！！
       如果要讓區塊至中的話可以使用containerBase這個class(目前寬度1140px) -->
-      <section class="container" style="display: flex">
+      <section class="container" style="display: flex" id="app">
         <!-- 頁面左邊 -->
         <div class="aside">
           <div style="width: 100%">
@@ -174,108 +181,84 @@
                 style="position: relative; top: 2px"
               >
                 <div>
-                  <form id="navSearch1" action="">
-                    <select style="width: 125px; margin-left: 80px" name="formal">
-                      <option value="MemberCenter"> 我的課程</option>
-                      <option value="MemberDetail"> 會員資料</option> 
-                        <option value="MySubscribe">訂閱與收藏 </option>
-                      <option value="orderList"> 訂單管理 </option>
-                      <option value="inboxmail"> 站內信</option>
-                    </select>
-                  </form>
+                  <!-- <form id="navSearch1" action=""> -->
+                  <select
+                    style="width: 125px; margin-left: 80px"
+                    name="formal"
+                    id="formal"
+                    @change="selectChange"
+                  >
+                    <option value="MemberCenter" selected>我的課程</option>
+                    <option value="MemberDetail">會員資料</option>
+                    <option value="MySubscribe">訂閱與收藏</option>
+                    <option value="orderList">訂單管理</option>
+                    <option value="inboxmail">站內信</option>
+                  </select>
+                  <!-- </form> -->
                 </div>
               </div>
             </div>
             <!--會員照片-->
             <div class="memInfo">
               <div class="flexWrap flexAllCenter">
-                     <!-- 頭像開始 -->
-                    <div class="profile_picture m-0">
-                      <div style="text-align: center" class="pb-2"
-                      alt="頭像設置">                        
-                      </div>
-                      <div>
-                        <img
-                          id="eximg"
-                          class="rounded-circle"
-                          src="img/aside/logobgg.png"
-                          alt=""
-                        />
-                      </div>
-                      
-                    </div>
-                    <!-- 頭像結束 -->
-                <div class="memName">
-                  <img
-                    src="/teacherWanted/baseVer2/img/aside/icons8-bird-48.png"
-                    alt=""
-                  />
-                  <span>會員姓名:</span>
-                </div>
-                
-                  <!-- <span>簽到日期:2023-04-11</span><br> -->
-                                
-                  <!--在此加入行事曆-->
-                  <div class="flexWrap flexAllCenter">
-                    <div id='calendar' style="height: 400px;"></div>
+                <!-- 頭像開始 -->
+
+                <div class="profile_picture m-0">
+                  <div
+                    style="text-align: center"
+                    class="pb-2"
+                    alt="頭像設置"
+                  ></div>
+                  <div>
+                    <img id="eximg" class="rounded-circle" />
                   </div>
+                  <div class="setfileinput" v-else>
+                    <div>
+                      <input
+                        type="file"
+                        id="p_file"
+                        name="image_uploads"
+                        accept=".jpg, .jpeg, .png"
+                        :disabled=" isDisabled"
+                        @change="handleFileUpload"
+                      />
+                    </div>
+                    <div id="file_camera">
+                      <i class="fa-solid fa-cloud-arrow-up"></i>
+                    </div>
+                  </div>
+                </div>
+                <!-- 頭像結束 -->
 
+                <div class="memName">
+                  <img alt="" />
+                  <span id="memNameHTML">會員姓名: </span>
+                </div>
 
-
-
-
+                <!-- <div class="flexHorizontalCenter">
+                <span>簽到日期:2023-04-11</span>
+              </div> -->
+                <div class="flexHorizontalCenter">
+                  <!--在此加入行事曆-->
+                  <div id="calendar"></div>
                 </div>
               </div>
-            </div>  
-        </div>
-    </div>          
-                
-
-          <!-- 頁面右邊 -->
-          <div class="main">
-            <div>
-              <!--課程搜尋-->
-              <div class="wrap">
-                <div class="search">
-                  <form id="navSearch" action="">
-                    <input type="text" />
-                    <img src="img/base/search.svg" alt="" />
-                  </form>
-                </div>
-              </div>
-
-              <ul class="item_list">
-                <li>
-                  <a href="#">
-                    <div class="img_block">
-                      <img src="/teacherWanted/baseVer2/img/main/3.png" />
-                    </div>
-                    <span class="item_text">5HRS JAVA從入門到入土</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <div class="img_block">
-                      <img src="/teacherWanted/baseVer2/img/main/4.png" />
-                    </div>
-                    <span class="item_text">5HRS MYSQL從刪庫到跑路</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <div class="img_block">
-                      <img src="/teacherWanted/baseVer2/img/main/5.png" />
-                    </div>
-                    <span class="item_text">5HRS C#從開始到放棄</span>
-                  </a>
-                </li>
-                <li></li>
-              </ul>
             </div>
           </div>
         </div>
 
-        
+        <div class="otherSide">
+          <div class="lessionList">
+            <div
+              v-for="memberOne in memberList"
+              :key="memberOne.id"
+              @click="hrefCourseId(memberOne.courseId)"
+            >
+              <img :src="memberOne.courseImgUrl" />
+              課程ID : {{memberOne.courseId}}
+            </div>
+          </div>
+        </div>
       </section>
     </main>
 
@@ -387,7 +370,11 @@
                   <a class="webMapLink" href="/wish">>許願池</a>
                 </li>
                 <li style="margin-top: 5px">
-                  <a class="webMapLink" href="/bbsdiscuss/index.html">>論壇</a>
+                  <a
+                    class="webMapLink"
+                    href="/bbsdiscuss/index.html?posttype=all"
+                    >>論壇</a
+                  >
                 </li>
                 <li style="margin-top: 5px">
                   <a class="webMapLink" href="/baseVer3/homepage.html">>商城</a>
@@ -398,22 +385,24 @@
         </div>
       </div>
     </footer>
-    <!--  Jquery -->
-    <script src="/jquery/jquery-3.6.4.min.js"></script>
-    <script src="/js/member/Moment.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-
-    <!--  axios -->
-    <script src="/axios/axios.js"></script>
-    <!--  vue   -->
-    <script src="/vue/vue-3.3.4.js"></script>
-    <!--  js  -->
-    <script src="/js/base.js"></script>
-    <script src="/js/member/MemberCenter.js"></script>
-
-
   </body>
+
+  <!--  Jquery -->
+  <script src="/jquery/jquery-3.6.4.min.js"></script>
+  <script src="/js/member/Moment.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css"
+  />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+
+  <!--  axios -->
+  <script src="/axios/axios.js"></script>
+  <!--  vue   -->
+  <script src="/vue/vue-3.3.4.js"></script>
+  <!--  js  -->
+  <script src="/js/base.js"></script>
+  <script src="/js/member/MemberCenter.js"></script>
 </html>

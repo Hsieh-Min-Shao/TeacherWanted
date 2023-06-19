@@ -45,12 +45,11 @@ public class ChatHandler extends TextWebSocketHandler {
 //        }
 
         if (true) {
-            // 身份验证成功
-            // 打印聊天室ID和会员ID
 
 
 
-            // 将会话添加到聊天室中
+
+            // 將訊息貼在聊天室中
             Set<WebSocketSession> sessions = chatRooms.getOrDefault(chatRoomId, new HashSet<>());
             sessions.add(session);
             chatRooms.put(chatRoomId, sessions);
@@ -61,9 +60,8 @@ public class ChatHandler extends TextWebSocketHandler {
 
             broadcast(set, result);
         } else {
-            // 身份验证失败
-            // 可以添加其他处理，例如发送错误消息给客户端
-            //發送错误消息给客户端給當前使用者
+
+            //發送錯誤當前使用者
 //            Set<WebSocketSession> sessions = chatRooms.getOrDefault(chatRoomId, new HashSet<>());
 //            sessions.add(session);
 //            chatRooms.put(chatRoomId, sessions);
@@ -118,11 +116,5 @@ public class ChatHandler extends TextWebSocketHandler {
         return pathSegments[pathSegments.length - 1];
     }
 
-//    private boolean isAuthorized(Integer chatRoomActivityId, Integer memId) {
-//        // 在这里执行身份验证逻辑，例如调用activeOrderDetailService.queryActiveOrderHistory(chatRoomId, memId)来验证身份
-//        // 返回true表示身份验证通过，返回false表示身份验证失败
-//        // 可根据实际需求进行身份验证逻辑的实现
-//        System.out.println(activeOrderDetailService.queryActiveOrderHistory(chatRoomActivityId, memId));
-//        return activeOrderDetailService.queryActiveOrderHistory(chatRoomActivityId, memId);
-//    }
+
 }

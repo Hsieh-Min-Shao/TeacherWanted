@@ -178,18 +178,20 @@
                 style="position: relative; top: 2px"
               >
                 <div>
-                  <form id="navSearch1" action="">
-                    <select
-                      style="width: 125px; margin-left: 80px"
-                      name="formal"
-                    >
-                      <option value="MemberCenter">我的課程</option>
-                      <option value="MemberDetail">會員資料</option>
-                      <option value="MySubscribe">訂閱與收藏</option>
-                      <option value="orderList">訂單管理</option>
-                      <option value="inboxmail">站內信</option>
-                    </select>
-                  </form>
+                  <!-- <form id="navSearch1" action=""> -->
+                  <select
+                    style="width: 125px; margin-left: 80px"
+                    name="formal"
+                    id="formal"
+                    @change="selectChange"
+                  >
+                    <option value="MemberCenter">我的課程</option>
+                    <option value="MemberDetail" selected>會員資料</option>
+                    <option value="MySubscribe">訂閱與收藏</option>
+                    <option value="orderList">訂單管理</option>
+                    <option value="inboxmail">站內信</option>
+                  </select>
+                  <!-- </form> -->
                 </div>
               </div>
             </div>
