@@ -28,9 +28,10 @@ public class UserServiceImpl implements UserService{
     }
     @Override
     public  void updateResetPasswordToken(String token,String memEmail) throws UserNotFoundException {
-        User user = repo.findByMemEmail(memEmail);
+
+        User user = repo.findByMemEmail(memEmail);//用信箱查找對應使用者
         if(user != null){
-            user.setResetPasswordToken(token);
+            user.setResetPasswordToken(token);//生成隨機令牌
             repo.save(user);
         } else {
             throw new UserNotFoundException("查無此Email"+memEmail);
@@ -42,7 +43,7 @@ public class UserServiceImpl implements UserService{
     }
 
 
-    public void updatePassword(User user, String newPassword){
+    public void updatePassword(User user, String newPassword){//重設密碼
         String encodePassword = AES256Util.encode(newPassword);//密碼加密
         user.setMemPassword(encodePassword);//塞回物件存進資料庫
         repo.save(user);

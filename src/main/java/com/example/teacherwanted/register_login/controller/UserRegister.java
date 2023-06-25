@@ -32,7 +32,7 @@ public class UserRegister {
         }
         boolean isEmailExists = service.checkMemEmail(user.getMemEmail());
         if (isEmailExists) {
-            session.setAttribute("msg", "電子郵件與他人重複，請重新設定");
+            session.setAttribute("msg", "電子郵件已註冊過，請重新設定");
             return "register";
         }
             String password = user.getMemPassword();//取出密碼

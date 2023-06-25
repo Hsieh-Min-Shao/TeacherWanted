@@ -34,22 +34,10 @@ public class UserLogin {
 
 
     @PostMapping("/userLogin")
-    public String userLogin(@ModelAttribute("user") User user, HttpSession session, HttpServletResponse response, RedirectAttributes ra) {
-        String xxx = user.getMemAccount(); //獲取用戶輸入的帳號
-        Optional<User> userdata = repo.findByMemAccount(xxx); //從資料庫中查找帳號對應的用戶資料
-//        boolean rememberMe = user.isRememberMe();
-//        if (rememberMe) {
-//            // 將帳號和密碼存儲在 Cookie 中
-//            Cookie usernameCookie = new Cookie("username", user.getMemAccount());
-//            Cookie passwordCookie = new Cookie("password", user.getMemPassword());
-//            // 設置 Cookie 的有效期限，例如 30 天
-//            usernameCookie.setMaxAge(30 * 24 * 60 * 60); // 30 天的秒數
-//            passwordCookie.setMaxAge(30 * 24 * 60 * 60);
-//            // 將 Cookie 添加到響應中
-//            response.addCookie(usernameCookie);
-//            response.addCookie(passwordCookie);
-//            System.out.println(user.getMemAccount()+user.getMemPassword());
-//        }
+    public String userLogin(@ModelAttribute("user") User user, HttpSession session, RedirectAttributes ra) {
+        String account = user.getMemAccount(); //獲取用戶輸入的帳號
+        Optional<User> userdata = repo.findByMemAccount(account); //從資料庫中查找帳號對應的用戶資料
+//
         if (!userdata.isPresent()) {
             return "loginFail";
         }

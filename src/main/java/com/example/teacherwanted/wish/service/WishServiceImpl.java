@@ -38,11 +38,7 @@ public class WishServiceImpl implements WishService {
         throw new WishNotFoundException("Could not find any wish with ID " + wishId);
     }
 
-    public void delete(Integer wishId) throws WishNotFoundException { // 刪除wish的方法
-        Long count = repo.countBywishId(wishId);
-        if (count == null || count == 0) {
-            throw new WishNotFoundException("Could not find any wish with ID " + wishId);
-        }
+    public void delete(Integer wishId) throws WishNotFoundException  { // 刪除wish的方法
         repo.deleteById(wishId);
     }
 
