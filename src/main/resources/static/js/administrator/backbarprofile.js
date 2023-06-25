@@ -41,6 +41,11 @@ $(document).ready(function(){
             bankCodeInput.oninput();
         });
         var admin =JSON.parse(sessionStorage.getItem('adminStorage'))
+
+
+
+
+
         $.ajax({
           type: 'GET',
           url: '/teachers/pro/'+admin.adminId,
@@ -198,9 +203,13 @@ $(document).ready(function(){
     })
 
 
+
 })
 
 // =====================使textarea裡的文字可以換行
 
 
-
+var admin =JSON.parse(sessionStorage.getItem('adminStorage'))
+function goTofrontTea(){
+  location.href=`http://localhost:8080/courseteacher/TeacherInfoVue.html?teaId=${admin.teaId}`
+}

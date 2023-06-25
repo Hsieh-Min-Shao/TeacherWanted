@@ -1,24 +1,18 @@
 //==========option 切換頁面===========//
 $(document).ready(function() {
-    console.log('test : ', 12345789)
+    console.log('test : ', 12345789);
     $("#navSearch1").change(function() {
-      let switchValue = $('#navSearch1').find(":selected").val();;
-      console.log('switchValue:',switchValue)
+      let switchValue = $('#navSearch1').find(":selected").val();
+    //   console.log('switchValue:',switchValue);
       switch (switchValue) {
-        case "MemberCenter":
-          location.href="/member/MemberCenter.html";
-          break;
         case "MemberDetail":
-          location.href="/member/MemberDetail.html";
+            window.location.href="/member/MemberDetail.html";
           break;
         case "MySubscribe":
-          location.href="/member/MySubscribe.html";
+            window.location.href="/member/MySubscribe.html";
           break;
         case "orderList":
-          location.href="/member/orderList.html";
-          break;
-        case "inboxmail":
-          location.href="/member/inboxmail.html";
+            window.location.href="/member/orderList.html";
           break;
         default:
           return;
@@ -780,7 +774,7 @@ $(document).ready(function() {
   
     // 發送AJAX請求取得資料
     $.ajax({
-      url: '/course_orders/{memId}',  // 請將URL替換為實際的資料取得端點
+      url: '/course_orders/13',  // 請將URL替換為實際的資料取得端點
       type: 'GET',
       dataType: 'json',
       success: function(response) {
@@ -793,7 +787,7 @@ $(document).ready(function() {
           table.row.add([
             order.orderId,
             order.memId,
-            order.original,
+            order.originalPrice,
             order.couponCode,
             order.discount,
             order.discountPrice,

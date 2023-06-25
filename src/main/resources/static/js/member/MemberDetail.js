@@ -26,32 +26,32 @@ const btn = document.querySelector("#detail_submit");
 const file = document.querySelector("#p_file");
 
 //===========option按鈕切換頁面==========//
-$(document).ready(function () {
-  console.log("test : ", 12345789);
-  $("#navSearch1").change(function () {
-    let switchValue = $("#navSearch1").find(":selected").val();
-    console.log("switchValue:", switchValue);
-    switch (switchValue) {
-      case "MemberCenter":
-        location.href = "/member/MemberCenter.html";
-        break;
-      case "MemberDetail":
-        location.href = "/member/MemberDetail.html";
-        break;
-      case "MySubscribe":
-        location.href = "/member/MySubscribe.html";
-        break;
-      case "orderList":
-        location.href = "/member/orderList.html";
-        break;
-      case "inboxmail":
-        location.href = "/member/inboxmail.html";
-        break;
-      default:
-        return;
-    }
-  });
-});
+// $(document).ready(function () {
+//   console.log("test : ", 12345789);
+//   $("#navSearch1").change(function () {
+//     let switchValue = $("#navSearch1").find(":selected").val();
+//     console.log("switchValue:", switchValue);
+//     switch (switchValue) {
+//       case "MemberCenter":
+//         location.href = "/member/MemberCenter.html";
+//         break;
+//       case "MemberDetail":
+//         location.href = "/member/MemberDetail.html";
+//         break;
+//       case "MySubscribe":
+//         location.href = "/member/MySubscribe.html";
+//         break;
+//       case "orderList":
+//         location.href = "/member/orderList.html";
+//         break;
+//       case "inboxmail":
+//         location.href = "/member/inboxmail.html";
+//         break;
+//       default:
+//         return;
+//     }
+//   });
+// });
 // file.addEventListener('change', () => {
 //   const service_img = document.querySelector('#service_img');
 //   service_img.src = URL.createObjectURL(file.files[0]);
@@ -254,7 +254,14 @@ const app = Vue.createApp({
         reader.readAsDataURL(file);
       }
     },
-    //=========上傳圖片============//
+    //=========分頁切換============//
+    selectChange(event) {
+      // 獲取選擇的值
+      const selectedOption = event.target.value;
+      // 執行你的操作，例如更新其他數據屬性
+      console.log("選擇的值:", selectedOption);
+      window.location.href = `/member/${selectedOption}.html`;
+    },
   },
 });
 
@@ -348,4 +355,13 @@ window.addEventListener("load", () => {
 
 // window.addEventListener("load", () => {
 //   app.mount("#app");
+// });
+
+//==========分頁切換============//
+
+// $(function () {
+//   $("#formal").on("change", function () {
+//     alert("chanfe！！！", $("#formal").val());
+//     window.location.href = `/member/${$("#formal").val()}.html`;
+//   });
 // });
